@@ -16,9 +16,9 @@ CFLAGS = -Wall -Wextra -Werror -I../headers
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@printf ">  \x1b[32mAll libft object compiled\x1b[0m\n"
+	@printf ">  \033[32mAll libft object compiled\033[0m\n"
 	@ar -rc $(NAME) $(OBJ)
-	@printf ">  \x1b[32m$(NAME) compiled \x1b[0m\n"
+	@printf ">  \033[32m$(NAME) compiled \033[0m\n"
 
 .c.o:
 	@gcc $(CFLAGS) -o $@ -c $<
@@ -28,7 +28,7 @@ clean:
 
 fclean: clean
 	@rm -rf $(NAME)
-	@printf ">  \x1b[31m$(NAME) deleted\x1b[0m\n"
+	@printf ">  \033[31m$(NAME) deleted\033[0m\n"
 
 re: fclean all
 

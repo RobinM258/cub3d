@@ -29,21 +29,21 @@ void init_map(t_game *game)
     }
     game->map[i] = NULL;
 }
-void ft_put_pixel(t_game *game, int x, int y)
+void ft_put_pixel(t_game *game, int x, int y, uint32_t color)
 {
     int i;
     int j;
 
-    j = y;
-    x = x + 64;
-    y = y + 64;
+    j = y * 32;
+    x = x * 32;
+    y = y * 32;
     i = x;
-    while (j < y)
+    while (j < y + 32)
     {
-        x = x -64;
-        while (i < x)
+        i = x;
+        while (i < x + 32)
         {
-            mlx_put_pixel(game->bg, i , j, 0x666666FF);
+            mlx_put_pixel(game->bg, i , j, color);
             i++;
         }
         j++;
@@ -65,10 +65,14 @@ void print_map(t_game *game)
         j = 0;
         while(game->map[i][j])
         {
-            printf("i = %d j = %d\n", i, j);
-            ft_put_pixel(game, i, j);
+            printf("%c", game->map[i][j]);
+            if (game->map[i][j] == '1')
+                ft_put_pixel(game, j, i, 0x55555FF);
+            if (game->map[i][j] == '2')
+                ft_put_pixel(game, j, i, 0x11111FF);
             j++;
         }
+        printf("\n");
         i++;
     }
 }

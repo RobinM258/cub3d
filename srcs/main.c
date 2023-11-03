@@ -10,7 +10,8 @@ int main (void)
         return (0);
     game->mlx = mlx_init(1024, 1024, "cub3d", true);
     print_map(game);
-    mlx_key_hook(game->mlx, &key_hook, game);
+    mlx_key_hook(game->mlx, game);
+    mlx_loop_hook(game->mlx, &key_hook, game);
     mlx_loop(game->mlx);
     return (0);
 }

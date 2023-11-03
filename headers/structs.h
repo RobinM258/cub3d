@@ -3,6 +3,13 @@
 
 #include "../MLX42/include/MLX42/MLX42.h"
 
+typedef struct s_player
+{
+    int x;
+    int y;
+
+} t_player;
+
 typedef struct s_game
 {
     mlx_t   *mlx;

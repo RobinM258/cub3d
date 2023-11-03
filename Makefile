@@ -4,7 +4,8 @@ LIB = libft.a
 
 FILES = main \
 		init_texture \
-		mlx_key_hook
+		mlx_key_hook \
+		ft_player
 
 SRC = $(foreach f, $(FILES), srcs/$(f).c)
 OBJ = $(SRC:.c=.o)
