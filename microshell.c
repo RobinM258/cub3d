@@ -39,9 +39,3 @@ int main( int ac, char *av[], char *env[] ) {
         }
     }
 }
-
-// recoder cd
-// implementer |
-// implementer ;
-
-echo oui | ls

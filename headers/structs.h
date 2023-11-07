@@ -17,8 +17,8 @@ typedef struct s_game
     mlx_image_t     *bg;
     mlx_image_t *wall;
     char    **map;
-    int     y_size;
-    int     x_size;
+    float    y_size;
+    float    x_size;
 
 } t_game;
 

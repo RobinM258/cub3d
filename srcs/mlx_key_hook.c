@@ -17,8 +17,15 @@ void loop_hook(void *param)
     t_game  *game;
 
     game = (t_game *)param;
-  if (mlx_is_key_down(game->win, MLX_KEY_ESCAPE))
+    if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
         mlx_close_window(game->mlx);
     if (mlx_is_key_down(game->mlx, MLX_KEY_W))
         ft_movement(game, 'w');
+    if (mlx_is_key_down(game->mlx, MLX_KEY_S))
+        ft_movement(game, 's');
+    if (mlx_is_key_down(game->mlx, MLX_KEY_A))
+        ft_movement(game, 'a');
+    if (mlx_is_key_down(game->mlx, MLX_KEY_D))
+        ft_movement(game, 'd');
+    act_map(game);
 }

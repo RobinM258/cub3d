@@ -29,7 +29,7 @@ void init_map(t_game *game)
     }
     game->map[i] = NULL;
 }
-void ft_put_pixel(t_game *game, int x, int y, uint32_t color)
+void ft_put_pixel(t_game *game, float x, float y, uint32_t color)
 {
     int i;
     int j;
@@ -50,6 +50,30 @@ void ft_put_pixel(t_game *game, int x, int y, uint32_t color)
     }
 }
 
+void act_map(t_game *game)
+{
+    int i;
+    int j;
+
+    i = 0;
+    j = 0;
+    mlx_delete_image(game->mlx, game->bg);
+    game->bg = mlx_new_image(game->mlx, 1024, 1024);
+    mlx_image_to_window(game->mlx, game->bg, 0, 0);
+    while (game->map[i])
+    {
+        j = 0;
+        while(game->map[i][j])
+        {
+            if (game->map[i][j] == '1')
+                ft_put_pixel(game, j, i, 0x55555FF);                
+            j++;
+        }
+        ft_put_pixel(game, game->y_size, game->x_size, 0x66666FF);
+        i++;
+    }
+}
+
 void print_map(t_game *game)
 {
     init_map(game);
@@ -65,14 +89,18 @@ void print_map(t_game *game)
         j = 0;
         while(game->map[i][j])
         {
-            printf("%c", game->map[i][j]);
             if (game->map[i][j] == '1')
                 ft_put_pixel(game, j, i, 0x55555FF);
             if (game->map[i][j] == '2')
-                ft_put_pixel(game, j, i, 0x11111FF);
+            {
+                game->x_size = i;
+                game->y_size = j;
+                printf("x = %f y = %f\n", game->x_size, game->y_size);  
+                ft_put_pixel(game, j, i, 0x66666FF);
+            }
+                
             j++;
         }
-        printf("\n");
         i++;
     }
 }
