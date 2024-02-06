@@ -1,0 +1,18 @@
+
+F 255,255,255
+
+NO ./img/wall.png
+SO ./img/wall.png
+EA ./img/wall2.png
+WE ./img/wall4.png
+
+C 0,0,255
+
+1111111
+1101001 
+100E001
+1000001
+1111111
+
+
+

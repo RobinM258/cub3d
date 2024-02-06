@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   error_management.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romartin <romartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 17:43:23 by romartin          #+#    #+#             */
-/*   Updated: 2024/02/05 18:34:02 by romartin         ###   ########.fr       */
+/*   Created: 2024/01/27 20:59:22 by romartin          #+#    #+#             */
+/*   Updated: 2024/01/30 17:49:22 by romartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
 
-int	ft_strlen(char *str)
+int	error_walls(char *str, char *red, char *line)
 {
-	int	i;
+	free(red);
+	free(line);
+	free(str);
+	return (1);
+}
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+int	error_parsing(char **map, char **map2, char *error)
+{
+	printf("%s\n", error);
+	if (map2)
+		free_tab(map2);
+	if (map)
+		free_tab(map);
+	return (1);
 }

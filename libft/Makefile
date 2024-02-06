@@ -1,34 +1,38 @@
 NAME = libft.a
 
-FILES = ft_strlen \
-		ft_freetab \
-		ft_printab \
-		ft_strjoin \
-		ft_itoa \
-		gnl \
-		gnl_utils
+FILES = get_next_line\
+		get_next_line_utils\
+		ft_split\
+		ft_atoi\
+		ft_strlen \
+		ft_substr \
+		ft_strncmp \
+		ft_split
 
-S = $(foreach f, $(FILES), $(f).c)
-OBJ = $(S:.c=.o)
+SRC = $(foreach f, $(FILES), $(f).c)
+OBJ = $(SRC:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror -I../headers
+FLAGS = -I../headers -Werror -Wextra -Wall -g3
 
 all: $(NAME)
+r: re
+	./$(NAME)
 
 $(NAME): $(OBJ)
-	@printf ">  \033[32mAll libft object compiled\033[0m\n"
-	@ar -rc $(NAME) $(OBJ)
-	@printf ">  \033[32m$(NAME) compiled \033[0m\n"
+	ar -rc $(NAME) $(OBJ)
 
 .c.o:
-	@gcc $(CFLAGS) -o $@ -c $<
+	@gcc $(FLAGS) -o $@ -c $<
+
+$(LIB):
+	@make -C libft
+	@cp libft/libft.a ./
 
 clean:
-	@rm -rf $(OBJ)
+	rm -rf $(OBJ)
 
 fclean: clean
-	@rm -rf $(NAME)
-	@printf ">  \033[31m$(NAME) deleted\033[0m\n"
+	rm -rf $(NAME)
 
 re: fclean all
 

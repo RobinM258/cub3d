@@ -1,18 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: romartin <romartin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/28 19:14:06 by dgoubin           #+#    #+#             */
+/*   Updated: 2024/02/05 18:01:11 by romartin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "../headers/cub3d.h"
+#include "cub3d.h"
 
-t_game *game;
-
-int main (void)
+int	main(int ac, char *av[])
 {
-    game = malloc(sizeof(t_game));
-    if (!game)
-        return (0);
-    game->x_size = 0;
-    game->mlx = mlx_init(1024, 1024, "cub3d", true);
-    print_map(game);
-    mlx_key_hook(game->mlx, &key_hook, game);
-    mlx_loop_hook(game->mlx, &loop_hook, game);
-    mlx_loop(game->mlx);
-    return (0);
+	t_game	game;
+
+	game.ray.savedist = 0;
+	if (ac != 2)
+	{
+		printf("required: ./cub3d \"path_to_map\"\n");
+		return (1);
+	}
+	if (parsing(av[1], &game))
+		exit(1);
+	init_game(&game, av[1]);
+	init_window(&game);
+	return (0);
 }
